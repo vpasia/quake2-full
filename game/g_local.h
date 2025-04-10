@@ -814,6 +814,11 @@ void ChaseNext(edict_t *ent);
 void ChasePrev(edict_t *ent);
 void GetChaseTarget(edict_t *ent);
 
+///
+/// g_spawn.c
+///
+void Spawn_Monster(edict_t* ent, char* classname, float origin[], float angles[], int flags);
+
 //============================================================================
 
 // client_t->anim_priority

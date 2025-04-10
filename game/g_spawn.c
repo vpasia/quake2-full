@@ -312,6 +312,33 @@ void ED_CallSpawn (edict_t *ent)
 }
 
 /*
+===============
+Spawn_Monster
+
+Spawns monster based on specified classname, position, angles, and extra flags
+===============
+*/
+void Spawn_Monster(edict_t* ent, char *classname, float origin[], float angles[], int flags) 
+{
+	int i;
+	
+	ent = G_Spawn();
+
+	if (!ent || !classname) return;
+
+	for (i = 0; i < 3; i++) 
+	{
+		ent->s.origin[i] = origin[i];
+		ent->s.angles[i] = angles[i];
+	}
+
+	ent->monsterinfo.aiflags = flags;
+	ent->classname = classname;
+
+	ED_CallSpawn(ent);
+}
+
+/*
 =============
 ED_NewString
 =============
