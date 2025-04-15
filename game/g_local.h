@@ -647,6 +647,7 @@ char	*vtos (vec3_t v);
 
 float vectoyaw (vec3_t vec);
 void vectoangles (vec3_t vec, vec3_t angles);
+void ToForward(vec3_t in, vec3_t out);
 
 //
 // g_combat.c
@@ -817,7 +818,7 @@ void GetChaseTarget(edict_t *ent);
 ///
 /// g_spawn.c
 ///
-void Spawn_Monster(edict_t* ent, char* classname, float origin[], float angles[], int flags);
+void Spawn_Monster(edict_t* ent, char* classname, vec3_t origin, vec3_t angles[], int flags);
 
 //============================================================================
 

@@ -907,37 +907,43 @@ Cmd_SpawnMonster_f
 void Cmd_SpawnMonster_f(edict_t* ent) 
 {
 	int i, flags = 0;
-	float origin[3], angles[3];
+	float yaw;
+	vec3_t origin, angles, yaw_vec, z_off;
 
 	if (!ent)
 	{
 		return;
 	}
 
-	if ((deathmatch->value || coop->value) && !sv_cheats->value)
+	if (gi.argc() < 2 || gi.argc() > 3)
 	{
 		gi.cprintf(ent, PRINT_HIGH,
-			"You must run the server with '+set cheats 1' to enable this command.\n");
+			"Usage: spawnmonster classname <flags>\n");
 		return;
 	}
 
-	if (gi.argc() < 5 || gi.argc() > 9)
-	{
-		gi.cprintf(ent, PRINT_HIGH,
-			"Usage: spawnmonster classname x y z <angle_x angle_y angle_z> <flags>\n");
-		return;
-	}
+	yaw = vectoyaw(ent->client->v_angle);
 
-	for (i = 0; i < 3; i++) 
-	{
-		origin[i] = atof(gi.argv(i + 2));
-		if (gi.argc() >= 8) angles[i] = atof(gi.argv(i + 5));
-	}
+	gi.dprintf("Player Yaw: %f\n\n", yaw);
 
-	if (gi.argc() >= 9) 
+	VectorSet(yaw_vec, 0, yaw, 0);
+	VectorSet(z_off, 0, 0, 1);
+
+	ToForward(yaw_vec, yaw_vec);
+
+	VectorScale(yaw_vec, 80, yaw_vec);
+
+	VectorAdd(ent->s.origin, yaw_vec, origin);
+	VectorAdd(origin, z_off, origin);
+	VectorSet(angles, ent->client->v_angle[0], ent->client->v_angle[1] + 180, ent->client->v_angle[2]);
+
+	if (gi.argc() >= 3) 
 	{
 		flags = atoi(gi.argv(8));
 	}
+
+	gi.dprintf("Spawning %s at (%f, %f, %f)\n", gi.argv(1), origin[0], origin[1], origin[2]);
+	gi.dprintf("Player at (%f, %f, %f)\n", ent->s.origin[0], ent->s.origin[1], ent->s.origin[2]);
 
 	Spawn_Monster(ent, G_CopyString(gi.argv(1)), origin, angles, flags);
 }

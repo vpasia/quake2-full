@@ -388,6 +388,19 @@ void vectoangles (vec3_t value1, vec3_t angles)
 	angles[ROLL] = 0;
 }
 
+void ToForward(vec3_t in, vec3_t out) 
+{
+	float sp, sy, cp, cy;
+
+	sy = sinf(in[YAW] * (M_PI / 180));
+	cy = sinf(in[YAW] * (M_PI / 180));
+
+	sp = cosf(in[PITCH] * (M_PI / 180));
+	cp = cosf(in[PITCH] * (M_PI / 180));
+
+	VectorSet(out, cp * cy, cp * sy, -sp);
+}
+
 char *G_CopyString (char *in)
 {
 	char	*out;
