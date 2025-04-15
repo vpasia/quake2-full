@@ -1,50 +1,54 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\",
+  "WorkspaceRootPath": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\game\\g_cmds.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|solutionrelative:game\\g_cmds.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\g_weapon.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|solutionrelative:game\\g_weapon.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\game\\g_combat.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\p_weapon.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|solutionrelative:game\\p_weapon.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\g_combat.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|solutionrelative:game\\g_combat.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\game\\g_spawn.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|solutionrelative:game\\g_spawn.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\game\\g_local.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|solutionrelative:game\\g_local.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\game\\g_ai.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\g_ai.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|solutionrelative:game\\g_ai.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\game\\m_medic.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|solutionrelative:game\\m_medic.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\g_local.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|solutionrelative:game\\g_local.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\game\\g_target.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|solutionrelative:game\\g_target.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\g_spawn.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|solutionrelative:game\\g_spawn.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\game\\p_hud.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|solutionrelative:game\\p_hud.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\game\\g_utils.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\g_utils.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|solutionrelative:game\\g_utils.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\game\\g_svcmds.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|solutionrelative:game\\g_svcmds.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\g_cmds.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|solutionrelative:game\\g_cmds.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\game\\p_weapon.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|solutionrelative:game\\p_weapon.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\m_medic.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|solutionrelative:game\\m_medic.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\g_target.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|solutionrelative:game\\g_target.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\p_hud.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|solutionrelative:game\\p_hud.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\g_svcmds.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{99BC3F01-A7EE-4881-939F-8A5EB75E1973}|game\\game.vcxproj|solutionrelative:game\\g_svcmds.c||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,67 +58,77 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "m_medic.c",
-              "DocumentMoniker": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\game\\m_medic.c",
-              "RelativeDocumentMoniker": "game\\m_medic.c",
-              "ToolTip": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\game\\m_medic.c",
-              "RelativeToolTip": "game\\m_medic.c",
-              "ViewState": "AgIAAGACAAAAAAAAAAAhwGwCAAAOAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "g_weapon.c",
+              "DocumentMoniker": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\g_weapon.c",
+              "RelativeDocumentMoniker": "game\\g_weapon.c",
+              "ToolTip": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\g_weapon.c",
+              "RelativeToolTip": "game\\g_weapon.c",
+              "ViewState": "AgIAAKIBAAAAAAAAAAAIwLIBAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-04-10T21:08:01.951Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "g_target.c",
-              "DocumentMoniker": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\game\\g_target.c",
-              "RelativeDocumentMoniker": "game\\g_target.c",
-              "ToolTip": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\game\\g_target.c",
-              "RelativeToolTip": "game\\g_target.c",
-              "ViewState": "AgIAAHYBAAAAAAAAAAAhwHkBAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-04-10T21:07:39.82Z",
+              "WhenOpened": "2025-04-15T14:26:25.577Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
+              "Title": "m_medic.c",
+              "DocumentMoniker": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\m_medic.c",
+              "RelativeDocumentMoniker": "game\\m_medic.c",
+              "ToolTip": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\m_medic.c",
+              "RelativeToolTip": "game\\m_medic.c",
+              "ViewState": "AgIAAGACAAAAAAAAAAAhwGwCAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2025-04-10T21:08:01.951Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "g_target.c",
+              "DocumentMoniker": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\g_target.c",
+              "RelativeDocumentMoniker": "game\\g_target.c",
+              "ToolTip": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\g_target.c",
+              "RelativeToolTip": "game\\g_target.c",
+              "ViewState": "AgIAAHYBAAAAAAAAAAAhwHkBAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
+              "WhenOpened": "2025-04-10T21:07:39.82Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "g_utils.c",
-              "DocumentMoniker": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\game\\g_utils.c",
+              "DocumentMoniker": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\g_utils.c",
               "RelativeDocumentMoniker": "game\\g_utils.c",
-              "ToolTip": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\game\\g_utils.c",
+              "ToolTip": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\g_utils.c",
               "RelativeToolTip": "game\\g_utils.c",
-              "ViewState": "AgIAAHkBAAAAAAAAAAD4v5MBAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAHkBAAAAAAAAAAAkwJEBAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2025-04-10T19:55:42.729Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "p_hud.c",
-              "DocumentMoniker": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\game\\p_hud.c",
+              "DocumentMoniker": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\p_hud.c",
               "RelativeDocumentMoniker": "game\\p_hud.c",
-              "ToolTip": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\game\\p_hud.c",
+              "ToolTip": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\p_hud.c",
               "RelativeToolTip": "game\\p_hud.c",
               "ViewState": "AgIAAMwBAAAAAAAAAAAewLYAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-04-08T14:37:03.398Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-08T14:37:03.398Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "g_combat.c",
-              "DocumentMoniker": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\game\\g_combat.c",
+              "DocumentMoniker": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\g_combat.c",
               "RelativeDocumentMoniker": "game\\g_combat.c",
-              "ToolTip": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\game\\g_combat.c",
+              "ToolTip": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\g_combat.c",
               "RelativeToolTip": "game\\g_combat.c",
               "ViewState": "AgIAAB0AAAAAAAAAAAAAAGUAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
@@ -123,11 +137,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "g_ai.c",
-              "DocumentMoniker": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\game\\g_ai.c",
+              "DocumentMoniker": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\g_ai.c",
               "RelativeDocumentMoniker": "game\\g_ai.c",
-              "ToolTip": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\game\\g_ai.c",
+              "ToolTip": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\g_ai.c",
               "RelativeToolTip": "game\\g_ai.c",
               "ViewState": "AgIAAJMBAAAAAAAAAAAAAKQBAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
@@ -136,11 +150,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "g_local.h",
-              "DocumentMoniker": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\game\\g_local.h",
+              "DocumentMoniker": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\g_local.h",
               "RelativeDocumentMoniker": "game\\g_local.h",
-              "ToolTip": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\game\\g_local.h",
+              "ToolTip": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\g_local.h",
               "RelativeToolTip": "game\\g_local.h",
               "ViewState": "AgIAABgDAAAAAAAAAAD4vzUDAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
@@ -149,37 +163,37 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "g_spawn.c",
-              "DocumentMoniker": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\game\\g_spawn.c",
+              "DocumentMoniker": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\g_spawn.c",
               "RelativeDocumentMoniker": "game\\g_spawn.c",
-              "ToolTip": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\game\\g_spawn.c",
+              "ToolTip": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\g_spawn.c",
               "RelativeToolTip": "game\\g_spawn.c",
-              "ViewState": "AgIAACYBAAAAAAAAAAD4v0wBAAACAAAAAAAAAA==",
+              "ViewState": "AgIAAFMBAAAAAAAAAAD4v2ABAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2025-04-02T13:19:38.248Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 7,
               "Title": "g_cmds.c",
-              "DocumentMoniker": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\game\\g_cmds.c",
+              "DocumentMoniker": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\g_cmds.c",
               "RelativeDocumentMoniker": "game\\g_cmds.c",
-              "ToolTip": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\game\\g_cmds.c",
+              "ToolTip": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\g_cmds.c",
               "RelativeToolTip": "game\\g_cmds.c",
-              "ViewState": "AgIAAIgDAAAAAAAAAAD4v5UDAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAAJEDAAAAAAAAAAAAAKMDAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
               "WhenOpened": "2025-04-02T12:49:35.875Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "g_svcmds.c",
-              "DocumentMoniker": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\game\\g_svcmds.c",
+              "DocumentMoniker": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\g_svcmds.c",
               "RelativeDocumentMoniker": "game\\g_svcmds.c",
-              "ToolTip": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\game\\g_svcmds.c",
+              "ToolTip": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\g_svcmds.c",
               "RelativeToolTip": "game\\g_svcmds.c",
               "ViewState": "AgIAAOAAAAAAAAAAAAAewPAAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
@@ -187,15 +201,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 1,
               "Title": "p_weapon.c",
-              "DocumentMoniker": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\game\\p_weapon.c",
+              "DocumentMoniker": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\p_weapon.c",
               "RelativeDocumentMoniker": "game\\p_weapon.c",
-              "ToolTip": "C:\\Users\\vince\\Desktop\\School Code\\NJIT\\IT266\\Quake 2\\quake2-full\\game\\p_weapon.c",
+              "ToolTip": "C:\\Users\\vince\\OneDrive\\Desktop\\School Code\\IT266\\Quake 2\\quake2-full\\game\\p_weapon.c",
               "RelativeToolTip": "game\\p_weapon.c",
-              "ViewState": "AgIAACkCAAAAAAAAAAAswBgCAAAHAAAAAAAAAA==",
+              "ViewState": "AgIAACYCAAAAAAAAAAAswDUCAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000423|",
-              "WhenOpened": "2025-04-01T15:15:01.501Z"
+              "WhenOpened": "2025-04-01T15:15:01.501Z",
+              "EditorCaption": ""
             }
           ]
         }

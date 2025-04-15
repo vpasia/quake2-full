@@ -397,7 +397,7 @@ fire_grenade
 */
 static void Grenade_Explode (edict_t *ent)
 {
-	vec3_t		origin;
+	vec3_t		origin, offset;
 	int			mod;
 
 	if (ent->owner->client)
@@ -428,7 +428,19 @@ static void Grenade_Explode (edict_t *ent)
 		mod = MOD_HG_SPLASH;
 	else
 		mod = MOD_G_SPLASH;
-	T_RadiusDamage(ent, ent->owner, ent->dmg, ent->enemy, ent->dmg_radius, mod);
+
+	if (ent->owner->client && (mod & MOD_HG_SPLASH)) 
+	{
+		VectorCopy(ent->s.origin, origin);
+		VectorSet(offset, 0, 0, 50);
+		VectorAdd(origin, offset, origin);
+
+		Spawn_Monster(ent, G_CopyString("monster_berserk"), origin, ent->owner->s.angles, AI_GOOD_GUY);
+	}
+	else 
+	{
+		T_RadiusDamage(ent, ent->owner, ent->dmg, ent->enemy, ent->dmg_radius, mod);
+	}
 
 	VectorMA (ent->s.origin, -0.02, ent->velocity, origin);
 	gi.WriteByte (svc_temp_entity);
