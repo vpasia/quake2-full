@@ -1,1 +1,2 @@
 C:\Users\vince\OneDrive\Desktop\School Code\IT266\Quake 2\quake2-full\game\release\gamex86.dll
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\release\gamex86.dll

@@ -818,7 +818,8 @@ void GetChaseTarget(edict_t *ent);
 ///
 /// g_spawn.c
 ///
-void Spawn_Monster(edict_t* ent, char* classname, vec3_t origin, vec3_t angles[], int flags);
+void Spawn_Monster(edict_t* ent, char* classname, vec3_t origin, vec3_t angles, int flags);
+void ED_CallSpawn(edict_t* ent);
 
 //============================================================================
 

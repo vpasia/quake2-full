@@ -320,12 +320,17 @@ Spawns monster based on specified classname, position, angles, and extra flags
 */
 void Spawn_Monster(edict_t* ent, char *classname, vec3_t origin, vec3_t angles, int flags) 
 {	
+	int i;
+
 	ent = G_Spawn();
 
 	if (!ent || !classname) return;
 
-	VectorSet(ent->s.origin, origin[0], origin[1], origin[2]);
-	VectorSet(ent->s.angles, angles[0], angles[1], angles[2]);
+	for (i = 0; i < 3; i++) 
+	{
+		ent->s.origin[i] = origin[i];
+		ent->s.angles[i] = angles[i];
+	}
 
 	ent->monsterinfo.aiflags = flags;
 	ent->classname = classname;
