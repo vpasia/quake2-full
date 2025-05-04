@@ -1001,6 +1001,45 @@ void Cmd_SpawnEntity_f(edict_t* ent)
 
 /*
 =================
+Cmd_Teleport_f
+=================
+*/
+void Cmd_Teleport_f(edict_t* ent)
+{
+	if (!ent)
+	{
+		return;
+	}
+
+	if (!ent->client) 
+	{
+		return;
+	}
+
+	if (gi.argc() != 4)
+	{
+		gi.cprintf(ent, PRINT_HIGH,
+			"Usage: teleport x y z\n");
+		return;
+	}
+
+	gi.unlinkentity(ent);
+
+	VectorSet(ent->s.origin, atoi(gi.argv(1)), atoi(gi.argv(2)), atoi(gi.argv(3)));
+	VectorSet(ent->s.old_origin, atoi(gi.argv(1)), atoi(gi.argv(2)), atoi(gi.argv(3)));
+
+	VectorClear(ent->velocity);
+	ent->client->ps.pmove.pm_time = 160 >> 3;
+	ent->client->ps.pmove.pm_flags |= PMF_TIME_TELEPORT;
+
+	ent->s.event = EV_PLAYER_TELEPORT;
+
+	KillBox(ent);
+	gi.linkentity(ent);
+}
+
+/*
+=================
 Cmd_Whereami_f
 =================
 */
@@ -1113,6 +1152,8 @@ void ClientCommand (edict_t *ent)
 		Cmd_SpawnEntity_f(ent);
 	else if (Q_stricmp(cmd, "whereami") == 0)
 		Cmd_Whereami_f(ent);
+	else if (Q_stricmp(cmd, "teleport") == 0)
+		Cmd_Teleport_f(ent);
 	else	// anything that doesn't match a command will be a chat
 		Cmd_Say_f (ent, false, true);
 }
