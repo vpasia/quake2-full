@@ -315,13 +315,13 @@ void HelpComputer (edict_t *ent)
 
 	// send the layout
 	Com_sprintf (string, sizeof(string),
-		"xv 32 yv 200 picn pok_hud ",			// background
-		//"xv 202 yv 12 string2 \"%s\" "		// skill
-		//"xv 0 yv 24 cstring2 \"%s\" "		// level name
-		//"xv 0 yv 54 cstring2 \"%s\" "		// help 1
-		//"xv 0 yv 110 cstring2 \"%s\" "		// help 2
-		//"xv 50 yv 164 string2 \" kills     goals    secrets\" "
-		//"xv 50 yv 172 string2 \"%3i/%3i     %i/%i       %i/%i\" ", 
+		"xv 32 yv 8 picn help "			// background
+		"xv 202 yv 12 string2 \"%s\" "		// skill
+		"xv 0 yv 24 cstring2 \"%s\" "		// level name
+		"xv 0 yv 54 cstring2 \"%s\" "		// help 1
+		"xv 0 yv 110 cstring2 \"%s\" "		// help 2
+		"xv 50 yv 164 string2 \" kills     goals    secrets\" "
+		"xv 50 yv 172 string2 \"%3i/%3i     %i/%i       %i/%i\" ", 
 		sk,
 		level.level_name,
 		game.helpmessage1,
@@ -334,6 +334,35 @@ void HelpComputer (edict_t *ent)
 	gi.WriteString (string);
 	gi.unicast (ent, true);
 }
+
+/*
+==================
+BattleHud
+
+Draw pokemon battle hud.
+==================
+*/
+void BattleHud(edict_t* ent)
+{
+	char	string[1024];
+	
+	// send the layout
+	Com_sprintf(string, sizeof(string),
+		"xv 32 yv 200 picn pok_hud "			// background
+		"xv 32 yv 195 string1 \"Health: 100\" "
+		"xv 190 yv 8 string1 \"Enemy Health: 100\" "
+		"xv 50 yv 215 cstring2 \"Fight\" "	
+		"xv 50 yv 240 cstring2 \"Items\" "		
+		"xv 200 yv 215 cstring2 \"PkMn\" "	
+		"xv 200 yv 240 cstring2 \"Run\" "
+		);
+
+	gi.WriteByte(svc_layout);
+	gi.WriteString(string);
+	gi.unicast(ent, true);
+}
+
+
 
 
 /*
@@ -365,6 +394,31 @@ void Cmd_Help_f (edict_t *ent)
 	ent->client->pers.helpchanged = 0;
 	HelpComputer (ent);
 }
+
+/*
+==================
+Cmd_Battle_f
+
+Display the current help message
+==================
+*/
+void Cmd_Battle_f(edict_t* ent)
+{
+	ent->client->showinventory = false;
+	ent->client->showscores = false;
+	ent->client->showhelp = false;
+
+	if (ent->client->pers.in_battle)
+	{
+		ent->client->pers.in_battle = false;
+		return;
+	}
+
+	ent->client->pers.in_battle = true;
+	BattleHud(ent);
+}
+
+
 
 
 //=======================================================================
@@ -497,7 +551,7 @@ void G_SetStats (edict_t *ent)
 	}
 	else
 	{
-		if (ent->client->showscores || ent->client->showhelp)
+		if (ent->client->showscores || ent->client->showhelp || ent->client->pers.in_battle)
 			ent->client->ps.stats[STAT_LAYOUTS] |= 1;
 		if (ent->client->showinventory && ent->client->pers.health > 0)
 			ent->client->ps.stats[STAT_LAYOUTS] |= 2;

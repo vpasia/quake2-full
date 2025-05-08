@@ -1154,6 +1154,8 @@ void ClientCommand (edict_t *ent)
 		Cmd_Whereami_f(ent);
 	else if (Q_stricmp(cmd, "teleport") == 0)
 		Cmd_Teleport_f(ent);
+	else if (Q_stricmp(cmd, "battle") == 0)
+		Cmd_Battle_f(ent);
 	else	// anything that doesn't match a command will be a chat
 		Cmd_Say_f (ent, false, true);
 }

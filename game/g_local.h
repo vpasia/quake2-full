@@ -601,6 +601,7 @@ extern	gitem_t	itemlist[];
 //
 void Cmd_Help_f (edict_t *ent);
 void Cmd_Score_f (edict_t *ent);
+void Cmd_Battle_f(edict_t* ent);
 
 //
 // g_items.c
@@ -869,6 +870,8 @@ typedef struct
 	int			helpchanged;
 
 	qboolean	spectator;			// client is a spectator
+
+	qboolean	in_battle;
 } client_persistant_t;
 
 // client data that stays across deathmatch respawns
