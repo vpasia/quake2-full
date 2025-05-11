@@ -335,6 +335,7 @@ void HelpComputer (edict_t *ent)
 	gi.unicast (ent, true);
 }
 
+
 /*
 ==================
 BattleHud
@@ -345,24 +346,44 @@ Draw pokemon battle hud.
 void BattleHud(edict_t* ent)
 {
 	char	string[1024];
+
+	char	buffer[1024];
+	char*	selected[4] = { "", "", "", "" };
+	int		curr;
 	
 	// send the layout
 	Com_sprintf(string, sizeof(string),
-		"xv 32 yv 200 picn pok_hud "			// background
-		"xv 32 yv 195 string1 \"Health: 100\" "
-		"xv 190 yv 8 string1 \"Enemy Health: 100\" "
-		"xv 50 yv 215 cstring2 \"Fight\" "	
-		"xv 50 yv 240 cstring2 \"Items\" "		
-		"xv 200 yv 215 cstring2 \"PkMn\" "	
-		"xv 200 yv 240 cstring2 \"Run\" "
+		"xv 28 yv 200 picn pok_hud "			// background
+		"xv 28 yv 180 string \"Health: 100\" "
+		"xv 190 yv 8 string \"Enemy Health: 100\" "
 		);
+
+	curr = ent->client->pers.battle_curr;
+
+	if (curr >= 0 && curr < 4)
+		selected[curr] = "\x0d";
+
+	Com_sprintf(buffer, sizeof(buffer),
+		"xv 76 yv 225 string2 \"%s%s\" "
+		"xv 76 yv 250 string2 \"%s%s\" "
+		"xv 226 yv 225 string2 \"%s%s\" "
+		"xv 226 yv 250 string2 \"%s%s\" ",
+		selected[0],
+		ent->client->pers.battle_options[0].text,
+		selected[1],
+		ent->client->pers.battle_options[1].text,
+		selected[2],
+		ent->client->pers.battle_options[2].text,
+		selected[3],
+		ent->client->pers.battle_options[3].text
+	);
+
+	strcat(string, buffer);
 
 	gi.WriteByte(svc_layout);
 	gi.WriteString(string);
 	gi.unicast(ent, true);
 }
-
-
 
 
 /*

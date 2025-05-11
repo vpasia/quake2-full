@@ -604,11 +604,12 @@ This is only called when the game first initializes in single player,
 but is called after each death and level change in deathmatch
 ==============
 */
-void InitClientPersistant (gclient_t *client)
+void InitClientPersistant(gclient_t* client)
 {
-	gitem_t		*item;
+	int			i;
+	gitem_t* item;
 
-	memset (&client->pers, 0, sizeof(client->pers));
+	memset(&client->pers, 0, sizeof(client->pers));
 
 	item = FindItem("Blaster");
 	client->pers.selected_item = ITEM_INDEX(item);
@@ -616,17 +617,34 @@ void InitClientPersistant (gclient_t *client)
 
 	client->pers.weapon = item;
 
-	client->pers.health			= 100;
-	client->pers.max_health		= 100;
+	client->pers.health = 100;
+	client->pers.max_health = 100;
 
-	client->pers.max_bullets	= 200;
-	client->pers.max_shells		= 100;
-	client->pers.max_rockets	= 50;
-	client->pers.max_grenades	= 50;
-	client->pers.max_cells		= 200;
-	client->pers.max_slugs		= 50;
+	client->pers.max_bullets = 200;
+	client->pers.max_shells = 100;
+	client->pers.max_rockets = 50;
+	client->pers.max_grenades = 50;
+	client->pers.max_cells = 200;
+	client->pers.max_slugs = 50;
 
 	client->pers.connected = true;
+
+	client->pers.in_battle = false;
+
+	strcpy(client->pers.battle_options[0].text, "Fight");
+	strcpy(client->pers.battle_options[1].text, "Items");
+	strcpy(client->pers.battle_options[2].text, "PkMn");
+	strcpy(client->pers.battle_options[3].text, "Run");
+
+	//Temporary Until all functions are set.
+	for (i = 0; i < 4; i++) 
+	{
+		client->pers.battle_options[i].Select = NULL;
+	}
+
+	client->pers.battle_curr = 0;
+	client->pers.battle_hud_time = level.time;
+	client->pers.temp = NULL;
 }
 
 
@@ -1584,6 +1602,30 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 		if (level.time > level.intermissiontime + 5.0 
 			&& (ucmd->buttons & BUTTON_ANY) )
 			level.exitintermission = true;
+		return;
+	}
+
+	if (client->pers.in_battle)
+	{
+		client->ps.pmove.pm_type = PM_FREEZE;
+		short selection = ucmd->forwardmove;
+
+		if (level.time - ent->client->pers.battle_hud_time >= 0.5)
+		{
+			if (selection > 0)
+			{
+				client->pers.battle_curr = client->pers.battle_curr - 1 >= 0 ? client->pers.battle_curr - 1 : 3;
+			}
+			else if (selection < 0)
+			{
+				client->pers.battle_curr = client->pers.battle_curr + 1 < 4 ? client->pers.battle_curr + 1 : 0;
+			}
+
+			gi.dprintf("%d\n", client->pers.battle_curr);
+
+			BattleHud(ent);
+			client->pers.battle_hud_time = level.time;
+		}
 		return;
 	}
 

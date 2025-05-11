@@ -435,7 +435,7 @@ static void Grenade_Explode (edict_t *ent)
 		VectorSet(offset, 0, 0, 50);
 		VectorAdd(origin, offset, origin);
 
-		Spawn_Monster(ent, G_CopyString("monster_berserk"), origin, ent->owner->s.angles, AI_GOOD_GUY);
+		Spawn_Monster(ent->owner, G_CopyString("monster_berserk"), origin, ent->owner->s.angles, AI_GOOD_GUY);
 	}
 	else 
 	{

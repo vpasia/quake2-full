@@ -232,7 +232,7 @@ qboolean Pickup_Bandolier (edict_t *ent, edict_t *other)
 	if (other->client->pers.max_slugs < 75)
 		other->client->pers.max_slugs = 75;
 
-	item = FindItem("Bullets");
+	item = FindItem("Paralyze Heal");
 	if (item)
 	{
 		index = ITEM_INDEX(item);
@@ -241,7 +241,7 @@ qboolean Pickup_Bandolier (edict_t *ent, edict_t *other)
 			other->client->pers.inventory[index] = other->client->pers.max_bullets;
 	}
 
-	item = FindItem("Shells");
+	item = FindItem("Potion");
 	if (item)
 	{
 		index = ITEM_INDEX(item);
@@ -274,7 +274,7 @@ qboolean Pickup_Pack (edict_t *ent, edict_t *other)
 	if (other->client->pers.max_slugs < 100)
 		other->client->pers.max_slugs = 100;
 
-	item = FindItem("Bullets");
+	item = FindItem("Paralyze Heal");
 	if (item)
 	{
 		index = ITEM_INDEX(item);
@@ -283,7 +283,7 @@ qboolean Pickup_Pack (edict_t *ent, edict_t *other)
 			other->client->pers.inventory[index] = other->client->pers.max_bullets;
 	}
 
-	item = FindItem("Shells");
+	item = FindItem("Potion");
 	if (item)
 	{
 		index = ITEM_INDEX(item);
@@ -292,7 +292,7 @@ qboolean Pickup_Pack (edict_t *ent, edict_t *other)
 			other->client->pers.inventory[index] = other->client->pers.max_shells;
 	}
 
-	item = FindItem("Cells");
+	item = FindItem("Antidote");
 	if (item)
 	{
 		index = ITEM_INDEX(item);
@@ -1324,7 +1324,7 @@ always owned, never in the world
 /* pickup */	"Shotgun",
 		0,
 		1,
-		"Shells",
+		"Potion",
 		IT_WEAPON|IT_STAY_COOP,
 		WEAP_SHOTGUN,
 		NULL,
@@ -1347,7 +1347,7 @@ always owned, never in the world
 /* pickup */	"Super Shotgun",
 		0,
 		2,
-		"Shells",
+		"Potion",
 		IT_WEAPON|IT_STAY_COOP,
 		WEAP_SUPERSHOTGUN,
 		NULL,
@@ -1370,7 +1370,7 @@ always owned, never in the world
 /* pickup */	"Machinegun",
 		0,
 		1,
-		"Bullets",
+		"Paralyze Heal",
 		IT_WEAPON|IT_STAY_COOP,
 		WEAP_MACHINEGUN,
 		NULL,
@@ -1393,7 +1393,7 @@ always owned, never in the world
 /* pickup */	"Chaingun",
 		0,
 		1,
-		"Bullets",
+		"Paralyze Heal",
 		IT_WEAPON|IT_STAY_COOP,
 		WEAP_CHAINGUN,
 		NULL,
@@ -1413,10 +1413,10 @@ always owned, never in the world
 		"models/items/ammo/grenades/medium/tris.md2", 0,
 		"models/weapons/v_handgr/tris.md2",
 /* icon */		"a_grenades",
-/* pickup */	"Grenades",
+/* pickup */	"PokeBalls",
 /* width */		3,
 		5,
-		"grenades",
+		"PokeBalls",
 		IT_AMMO|IT_WEAPON,
 		WEAP_GRENADES,
 		NULL,
@@ -1439,7 +1439,7 @@ always owned, never in the world
 /* pickup */	"Grenade Launcher",
 		0,
 		1,
-		"Grenades",
+		"PokeBalls",
 		IT_WEAPON|IT_STAY_COOP,
 		WEAP_GRENADELAUNCHER,
 		NULL,
@@ -1462,7 +1462,7 @@ always owned, never in the world
 /* pickup */	"Rocket Launcher",
 		0,
 		1,
-		"Rockets",
+		"Burn Heal",
 		IT_WEAPON|IT_STAY_COOP,
 		WEAP_ROCKETLAUNCHER,
 		NULL,
@@ -1485,7 +1485,7 @@ always owned, never in the world
 /* pickup */	"HyperBlaster",
 		0,
 		1,
-		"Cells",
+		"Antidote",
 		IT_WEAPON|IT_STAY_COOP,
 		WEAP_HYPERBLASTER,
 		NULL,
@@ -1531,7 +1531,7 @@ always owned, never in the world
 /* pickup */	"BFG10K",
 		0,
 		50,
-		"Cells",
+		"Antidote",
 		IT_WEAPON|IT_STAY_COOP,
 		WEAP_BFG,
 		NULL,
@@ -1552,10 +1552,10 @@ always owned, never in the world
 		Drop_Ammo,
 		NULL,
 		"misc/am_pkup.wav",
-		"models/items/ammo/shells/medium/tris.md2", 0,
+		"models/items/healing/medium/tris.md2", 0,
 		NULL,
 /* icon */		"a_shells",
-/* pickup */	"Shells",
+/* pickup */	"Potion",
 /* width */		3,
 		10,
 		NULL,
@@ -1578,7 +1578,7 @@ always owned, never in the world
 		"models/items/ammo/bullets/medium/tris.md2", 0,
 		NULL,
 /* icon */		"a_bullets",
-/* pickup */	"Bullets",
+/* pickup */	"Paralyze Heal",
 /* width */		3,
 		50,
 		NULL,
@@ -1601,7 +1601,7 @@ always owned, never in the world
 		"models/items/ammo/cells/medium/tris.md2", 0,
 		NULL,
 /* icon */		"a_cells",
-/* pickup */	"Cells",
+/* pickup */	"Antidote",
 /* width */		3,
 		50,
 		NULL,
@@ -1624,7 +1624,7 @@ always owned, never in the world
 		"models/items/ammo/rockets/medium/tris.md2", 0,
 		NULL,
 /* icon */		"a_rockets",
-/* pickup */	"Rockets",
+/* pickup */	"Burn Heal",
 /* width */		3,
 		5,
 		NULL,

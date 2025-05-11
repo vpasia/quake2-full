@@ -783,6 +783,7 @@ void G_SetSpectatorStats (edict_t *ent);
 void G_CheckChaseStats (edict_t *ent);
 void ValidateSelectedItem (edict_t *ent);
 void DeathmatchScoreboardMessage (edict_t *client, edict_t *killer);
+void BattleHud(edict_t* ent);
 
 //
 // g_pweapon.c
@@ -822,6 +823,7 @@ void GetChaseTarget(edict_t *ent);
 void Spawn_Monster(edict_t* ent, char* classname, vec3_t origin, vec3_t angles, int flags);
 void ED_CallSpawn(edict_t* ent);
 
+
 //============================================================================
 
 // client_t->anim_priority
@@ -832,6 +834,12 @@ void ED_CallSpawn(edict_t* ent);
 #define	ANIM_ATTACK		4
 #define	ANIM_DEATH		5
 #define	ANIM_REVERSE	6
+
+typedef struct 
+{
+	char	text[20];
+	void	(*Select)(edict_t* ent);
+} hud_ent;
 
 
 // client data that stays across multiple level loads
@@ -872,6 +880,13 @@ typedef struct
 	qboolean	spectator;			// client is a spectator
 
 	qboolean	in_battle;
+
+	hud_ent		battle_options[4];
+	int			battle_curr;
+	float		battle_hud_time;
+
+	edict_t* temp;
+
 } client_persistant_t;
 
 // client data that stays across deathmatch respawns
