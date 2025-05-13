@@ -399,6 +399,9 @@ static void Grenade_Explode (edict_t *ent)
 {
 	vec3_t		origin, offset;
 	int			mod;
+	edict_t*	spawned_pokemon;
+	gclient_t*	client;
+	int			health_corrector;
 
 	if (ent->owner->client)
 		PlayerNoise(ent->owner, ent->s.origin, PNOISE_IMPACT);
@@ -431,11 +434,23 @@ static void Grenade_Explode (edict_t *ent)
 
 	if (ent->owner->client && (mod & MOD_HG_SPLASH)) 
 	{
+		client = ent->owner->client;
+
 		VectorCopy(ent->s.origin, origin);
 		VectorSet(offset, 0, 0, 50);
 		VectorAdd(origin, offset, origin);
 
-		Spawn_Monster(ent->owner, G_CopyString("monster_berserk"), origin, ent->owner->s.angles, AI_GOOD_GUY);
+		int curr = client->pers.pokemon_out;
+
+		spawned_pokemon = Spawn_Monster(ent->owner, client->pers.pokemon[curr], origin, ent->owner->s.angles, AI_GOOD_GUY);
+		
+		if (client->pers.pokemon_health[curr] > 0) 
+		{
+			health_corrector = spawned_pokemon->health - client->pers.pokemon_health[curr];
+			APPLY_POK_DAMAGE(spawned_pokemon, health_corrector);
+		}
+
+		client->pers.pok_in_play = spawned_pokemon;
 	}
 	else 
 	{

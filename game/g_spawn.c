@@ -318,19 +318,9 @@ Spawn_Monster
 Spawns monster based on specified classname, position, angles, and extra flags
 ===============
 */
-void Spawn_Monster(edict_t* ent, char *classname, vec3_t origin, vec3_t angles, int flags) 
+edict_t* Spawn_Monster(edict_t* ent, char *classname, vec3_t origin, vec3_t angles, int flags) 
 {	
 	int i;
-	gclient_t* client = ent->client;
-
-	if (!client)
-	{
-		gi.dprintf("No client\n");
-	}
-	else
-	{
-		gi.dprintf("YESSIR\n");
-	}
 
 	ent = G_Spawn();
 
@@ -346,8 +336,7 @@ void Spawn_Monster(edict_t* ent, char *classname, vec3_t origin, vec3_t angles, 
 	ent->classname = classname;
 
 	ED_CallSpawn(ent);
-
-	client->pers.temp = ent;
+	return ent;
 }
 
 /*

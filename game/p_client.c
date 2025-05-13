@@ -644,7 +644,17 @@ void InitClientPersistant(gclient_t* client)
 
 	client->pers.battle_curr = 0;
 	client->pers.battle_hud_time = level.time;
-	client->pers.temp = NULL;
+
+	strcpy(client->pers.pokemon[0], "monster_berserk");
+	memset(client->pers.pokemon_health, 0, sizeof(client->pers.pokemon_health));
+	client->pers.pok_in_play = NULL;
+
+	client->pers.next_pok_append = 0;
+	client->pers.pokemon_out = 0;
+
+	client->pers.pok_enemy = NULL;
+
+	client->pers.attack_hold_time = level.time;
 }
 
 
@@ -1577,6 +1587,61 @@ void PrintPmove (pmove_t *pm)
 	Com_Printf ("sv %3i:%i %i\n", pm->cmd.impulse, c1, c2);
 }
 
+void StartBattle(edict_t* ent, char* pokemon) 
+{
+	vec3_t pok_origin, pok_angles;
+
+	VectorSet(pok_origin, 1165, 653, 473);
+	VectorSet(pok_angles, ent->client->v_angle[0], 62, ent->client->v_angle[2]);
+
+	ent->client->pers.pok_enemy = Spawn_Monster(ent, pokemon, pok_origin, pok_angles, AI_GOOD_GUY);
+
+
+	gi.unlinkentity(ent);
+
+	VectorSet(ent->s.origin, 1383, 884, 472);
+	VectorSet(ent->s.old_origin, 1383, 884, 472);
+
+	VectorClear(ent->velocity);
+	ent->client->ps.pmove.pm_time = 160 >> 3;
+	ent->client->ps.pmove.pm_flags |= PMF_TIME_TELEPORT;
+
+	ent->s.event = EV_PLAYER_TELEPORT;
+
+	VectorSet(ent->client->ps.viewangles, 6, -118, 0);
+	VectorSet(ent->client->v_angle, 6, -118, 0);
+
+	gi.linkentity(ent);
+
+	gitem_t* pokeball = FindItem("PokeBalls");
+
+	if (ent->client->pers.inventory[ITEM_INDEX(pokeball)] <= 0) 
+	{
+		ent->client->pers.inventory[ITEM_INDEX(pokeball)] += 2;
+	}
+
+	Use_Weapon(ent, pokeball);
+
+	ent->client->weapon_thunk = true;
+	ent->client->buttons |= BUTTON_ATTACK;
+	Think_Weapon(ent);
+	ent->client->pers.attack_hold_time = level.time;
+	
+
+	ent->client->pers.in_battle = true;
+	BattleHud(ent);
+}
+
+void Cmd_StartBattle_f(edict_t* ent) 
+{
+	if (!ent || !ent->client) 
+	{
+		return;
+	}
+
+	StartBattle(ent, "monster_berserk");
+}
+
 /*
 ==============
 ClientThink
@@ -1608,6 +1673,13 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 	if (client->pers.in_battle)
 	{
 		client->ps.pmove.pm_type = PM_FREEZE;
+
+		if (client->buttons & BUTTON_ATTACK && level.time - client->pers.attack_hold_time >= 1.0) 
+		{
+			client->weapon_thunk = false;
+			client->buttons &= ~BUTTON_ATTACK;
+		}
+
 		short selection = ucmd->forwardmove;
 
 		if (level.time - ent->client->pers.battle_hud_time >= 0.5)
@@ -1626,6 +1698,9 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 			BattleHud(ent);
 			client->pers.battle_hud_time = level.time;
 		}
+
+
+
 		return;
 	}
 
@@ -1695,6 +1770,9 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 		{
 			gi.sound(ent, CHAN_VOICE, gi.soundindex("*jump1.wav"), 1, ATTN_NORM, 0);
 			PlayerNoise(ent, ent->s.origin, PNOISE_SELF);
+
+			StartBattle(ent, "monster_berserk");
+			return;
 		}
 
 		ent->viewheight = pm.viewheight;

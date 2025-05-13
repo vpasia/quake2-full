@@ -349,13 +349,18 @@ void BattleHud(edict_t* ent)
 
 	char	buffer[1024];
 	char*	selected[4] = { "", "", "", "" };
-	int		curr;
+	int		curr, pok_health, pok_ehealth;
+
+	pok_health = ent->client->pers.pok_in_play ? ent->client->pers.pok_in_play->health : 0;
+	pok_ehealth = ent->client->pers.pok_enemy ? ent->client->pers.pok_enemy->health : 0;
 	
 	// send the layout
 	Com_sprintf(string, sizeof(string),
 		"xv 28 yv 200 picn pok_hud "			// background
-		"xv 28 yv 180 string \"Health: 100\" "
-		"xv 190 yv 8 string \"Enemy Health: 100\" "
+		"xv 28 yv 180 string \"Health: %d\" "
+		"xv 190 yv 8 string \"Enemy Health: %d\" ",
+		pok_health,
+		pok_ehealth
 		);
 
 	curr = ent->client->pers.battle_curr;

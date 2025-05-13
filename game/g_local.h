@@ -674,6 +674,8 @@ void T_RadiusDamage (edict_t *inflictor, edict_t *attacker, float damage, edict_
 #define DEFAULT_SHOTGUN_COUNT	12
 #define DEFAULT_SSHOTGUN_COUNT	20
 
+#define APPLY_POK_DAMAGE(ent, damage) T_Damage(ent, world, world, vec3_origin, ent->s.origin, vec3_origin, damage, 5, DAMAGE_NO_PROTECTION, MOD_TELEFRAG);
+
 //
 // g_monster.c
 //
@@ -785,6 +787,17 @@ void ValidateSelectedItem (edict_t *ent);
 void DeathmatchScoreboardMessage (edict_t *client, edict_t *killer);
 void BattleHud(edict_t* ent);
 
+///
+/// p_weapon.c
+/// 
+void Use_Weapon(edict_t* ent, gitem_t* item);
+
+///
+/// p_client.c
+///
+void StartBattle(edict_t* ent, char* pokemon);
+void Cmd_StartBattle_f(edict_t* ent);
+
 //
 // g_pweapon.c
 //
@@ -820,7 +833,7 @@ void GetChaseTarget(edict_t *ent);
 ///
 /// g_spawn.c
 ///
-void Spawn_Monster(edict_t* ent, char* classname, vec3_t origin, vec3_t angles, int flags);
+edict_t* Spawn_Monster(edict_t* ent, char* classname, vec3_t origin, vec3_t angles, int flags);
 void ED_CallSpawn(edict_t* ent);
 
 
@@ -881,11 +894,19 @@ typedef struct
 
 	qboolean	in_battle;
 
-	hud_ent		battle_options[4];
+	hud_ent		battle_options[5];
 	int			battle_curr;
 	float		battle_hud_time;
 
-	edict_t* temp;
+	char		pokemon[MAX_ITEMS][30];
+	int			pokemon_health[MAX_ITEMS];
+	int			next_pok_append;
+	int			pokemon_out;
+
+	edict_t*	pok_in_play;
+	edict_t*	pok_enemy;
+	int			attack_hold_time;
+
 
 } client_persistant_t;
 

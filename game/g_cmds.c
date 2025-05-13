@@ -940,7 +940,7 @@ void Cmd_SpawnMonster_f(edict_t* ent)
 
 	if (gi.argc() >= 3) 
 	{
-		flags = atoi(gi.argv(8));
+		flags = atoi(gi.argv(2));
 	}
 
 	gi.dprintf("Spawning %s at (%f, %f, %f)\n", gi.argv(1), origin[0], origin[1], origin[2]);
@@ -1156,6 +1156,8 @@ void ClientCommand (edict_t *ent)
 		Cmd_Teleport_f(ent);
 	else if (Q_stricmp(cmd, "battle") == 0)
 		Cmd_Battle_f(ent);
+	else if (Q_stricmp(cmd, "startbattle") == 0)
+		Cmd_StartBattle_f(ent);
 	else	// anything that doesn't match a command will be a chat
 		Cmd_Say_f (ent, false, true);
 }
