@@ -415,6 +415,13 @@ typedef struct
 
 typedef struct
 {
+	char		move[21];
+	int			damage;
+	char		effect[11];
+} pokmove_t;
+
+typedef struct
+{
 	mmove_t		*currentmove;
 	int			aiflags;
 	int			nextframe;
@@ -445,6 +452,9 @@ typedef struct
 
 	int			power_armor_type;
 	int			power_armor_power;
+
+	pokmove_t	moves[4];
+	char		status_effect[11];
 } monsterinfo_t;
 
 
@@ -676,6 +686,12 @@ void T_RadiusDamage (edict_t *inflictor, edict_t *attacker, float damage, edict_
 
 #define APPLY_POK_DAMAGE(ent, damage) T_Damage(ent, world, world, vec3_origin, ent->s.origin, vec3_origin, damage, 5, DAMAGE_NO_PROTECTION, MOD_TELEFRAG);
 
+#define DEF_POK_MOVE(num, name, dmg, efct) {\
+strcpy(self->monsterinfo.moves[num].move, name);\
+self->monsterinfo.moves[num].damage = dmg;\
+strcpy(self->monsterinfo.moves[num].effect, efct);\
+}
+
 //
 // g_monster.c
 //
@@ -850,7 +866,7 @@ void ED_CallSpawn(edict_t* ent);
 
 typedef struct 
 {
-	char	text[20];
+	char	text[40];
 	void	(*Select)(edict_t* ent);
 } hud_ent;
 
@@ -893,18 +909,28 @@ typedef struct
 	qboolean	spectator;			// client is a spectator
 
 	qboolean	in_battle;
+	qboolean	player_turn;
+	qboolean	capturing;
+	qboolean	switching;
 
 	hud_ent		battle_options[5];
 	int			battle_curr;
+	int			battle_bound;
 	float		battle_hud_time;
 
 	char		pokemon[MAX_ITEMS][30];
 	int			pokemon_health[MAX_ITEMS];
 	int			next_pok_append;
+
 	int			pokemon_out;
+	int			pokemon_page;
 
 	edict_t*	pok_in_play;
 	edict_t*	pok_enemy;
+
+	char		message[150];
+	int			message_time;
+
 	int			attack_hold_time;
 
 

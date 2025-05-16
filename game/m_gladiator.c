@@ -379,6 +379,13 @@ void SP_monster_gladiator (edict_t *self)
 	self->monsterinfo.idle = gladiator_idle;
 	self->monsterinfo.search = gladiator_search;
 
+	memset(self->monsterinfo.status_effect, 0, sizeof(self->monsterinfo.status_effect));
+
+	DEF_POK_MOVE(0, "Blade", 25, "");
+	DEF_POK_MOVE(1, "Pierce", 90, "");
+	DEF_POK_MOVE(2, "Shock", 15, "");
+	DEF_POK_MOVE(3, "Spike", 90, "Poisoned");
+
 	gi.linkentity (self);
 	self->monsterinfo.currentmove = &gladiator_move_stand;
 	self->monsterinfo.scale = MODEL_SCALE;

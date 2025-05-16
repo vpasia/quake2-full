@@ -543,6 +543,13 @@ void SP_monster_parasite (edict_t *self)
 	self->monsterinfo.sight = parasite_sight;
 	self->monsterinfo.idle = parasite_idle;
 
+	memset(self->monsterinfo.status_effect, 0, sizeof(self->monsterinfo.status_effect));
+
+	DEF_POK_MOVE(0, "Drain", 25, "");
+	DEF_POK_MOVE(1, "Corrode", 30, "");
+	DEF_POK_MOVE(2, "Fang", 20, "");
+	DEF_POK_MOVE(3, "Bite", 35, "");
+
 	gi.linkentity (self);
 
 	self->monsterinfo.currentmove = &parasite_move_stand;	

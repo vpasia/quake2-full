@@ -1225,6 +1225,8 @@ void SP_monster_soldier_x (edict_t *self)
 	self->monsterinfo.melee = NULL;
 	self->monsterinfo.sight = soldier_sight;
 
+	memset(self->monsterinfo.status_effect, 0, sizeof(self->monsterinfo.status_effect));
+
 	gi.linkentity (self);
 
 	self->monsterinfo.stand (self);
@@ -1242,6 +1244,11 @@ void SP_monster_soldier_light (edict_t *self)
 		G_FreeEdict (self);
 		return;
 	}
+
+	DEF_POK_MOVE(0, "Flash", 20, "");
+	DEF_POK_MOVE(1, "Spark", 25, "");
+	DEF_POK_MOVE(2, "Quick Jab", 15, "");
+	DEF_POK_MOVE(3, "Shocker", 30, "Paralyzed");
 
 	SP_monster_soldier_x (self);
 
@@ -1266,6 +1273,11 @@ void SP_monster_soldier (edict_t *self)
 		return;
 	}
 
+	DEF_POK_MOVE(0, "Chain Burst", 40, "");
+	DEF_POK_MOVE(1, "Overload", 30, "");
+	DEF_POK_MOVE(2, "Smash", 35, "");
+	DEF_POK_MOVE(3, "Scorch", 45, "Burned");
+
 	SP_monster_soldier_x (self);
 
 	sound_pain = gi.soundindex ("soldier/solpain1.wav");
@@ -1286,6 +1298,11 @@ void SP_monster_soldier_ss (edict_t *self)
 		G_FreeEdict (self);
 		return;
 	}
+
+	DEF_POK_MOVE(0, "Buck", 24, "");
+	DEF_POK_MOVE(1, "Slam", 25, "");
+	DEF_POK_MOVE(2, "Scatter", 15, "");
+	DEF_POK_MOVE(3, "Daze", 30, "Confused");
 
 	SP_monster_soldier_x (self);
 

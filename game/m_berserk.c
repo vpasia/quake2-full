@@ -448,6 +448,13 @@ void SP_monster_berserk (edict_t *self)
 	self->monsterinfo.sight = berserk_sight;
 	self->monsterinfo.search = berserk_search;
 
+	memset(self->monsterinfo.status_effect, 0, sizeof(self->monsterinfo.status_effect));
+
+	DEF_POK_MOVE(0, "Slash", 50, "");
+	DEF_POK_MOVE(1, "Roar", 10, "");
+	DEF_POK_MOVE(2, "Throw", 40, "");
+	DEF_POK_MOVE(3, "Venom", 55, "Poisoned");
+
 	self->monsterinfo.currentmove = &berserk_move_stand;
 	self->monsterinfo.scale = MODEL_SCALE;
 

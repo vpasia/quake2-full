@@ -594,6 +594,286 @@ void player_die (edict_t *self, edict_t *inflictor, edict_t *attacker, int damag
 	gi.linkentity (self);
 }
 
+char* pocket_monsters[10] = 
+{
+	"monster_soldier_light",       
+	"monster_soldier_ss",  
+	"monster_soldier",         
+	"monster_gunner",         
+	"monster_berserk",         
+	"monster_parasite",        
+	"monster_brain",           
+	"monster_tank",            
+	"monster_gladiator",       
+	"monster_mutant"
+};
+
+void LoadBaseHudOpt(gclient_t* client);
+
+void ProcessMove(edict_t* ent) 
+{
+	gclient_t* client = ent->client;
+
+	pokmove_t move = client->pers.pok_in_play->monsterinfo.moves[client->pers.battle_curr];
+
+	if (strlen(move.effect)) 
+	{
+		strcpy(client->pers.pok_enemy->monsterinfo.status_effect, move.effect);
+	}
+
+	APPLY_POK_DAMAGE(client->pers.pok_enemy, move.damage);
+
+	Com_sprintf(client->pers.message, sizeof(client->pers.message), "%s used %s", client->pers.pok_in_play->classname, move.move);
+	client->pers.message_time = level.time;
+
+	LoadBaseHudOpt(client);
+	client->pers.player_turn = false;
+}
+
+void Fight(edict_t* ent) 
+{
+	int i;
+	gclient_t* client = ent->client;
+
+	if (!client->pers.pok_in_play) 
+	{
+		return;
+	}
+
+	for (i = 0; i < 4; i++) 
+	{
+		strcpy(client->pers.battle_options[i].text, client->pers.pok_in_play->monsterinfo.moves[i].move);
+		client->pers.battle_options[i].Select = ProcessMove;
+	}
+}
+
+void ProcessItem(edict_t* ent) 
+{
+	int heal_dmg;
+
+	gclient_t* client = ent->client;
+	edict_t* pokemon = client->pers.pok_in_play;
+
+	gitem_t* item = FindItem(client->pers.battle_options[client->pers.battle_curr].text);
+	int item_count = client->pers.inventory[ITEM_INDEX(item)];
+
+	if (!item_count || !pokemon) 
+	{
+		return;
+	}
+
+	switch (client->pers.battle_curr) 
+	{
+		case 0: 
+		{
+			if (pokemon->health != pokemon->max_health) 
+			{
+				heal_dmg = pokemon->health + 50 <= pokemon->max_health ? 50 : pokemon->max_health - pokemon->health;
+				pokemon->health += heal_dmg;
+
+				Com_sprintf(client->pers.message, sizeof(client->pers.message), "%s healed %d hp", pokemon->classname, heal_dmg);
+				client->pers.message_time = level.time;
+			}
+			break;
+		}
+		case 1:
+		{
+			if (strlen(pokemon->monsterinfo.status_effect) > 0 && strcmp(strlen(pokemon->monsterinfo.status_effect), "Burned") == 0) 
+			{
+				strcpy(pokemon->monsterinfo.status_effect, "");
+
+				Com_sprintf(client->pers.message, sizeof(client->pers.message), "%s healed from being burned", pokemon->classname);
+				client->pers.message_time = level.time;
+			}
+			break;
+		}
+		case 2:
+		{
+			if (strlen(pokemon->monsterinfo.status_effect) > 0 && strcmp(strlen(pokemon->monsterinfo.status_effect), "Paralyzed") == 0)
+			{
+				strcpy(pokemon->monsterinfo.status_effect, "");
+
+				Com_sprintf(client->pers.message, sizeof(client->pers.message), "%s healed from being paralyzed", pokemon->classname);
+				client->pers.message_time = level.time;
+			}
+			break;
+		}
+		case 3:
+		{
+			if (strlen(pokemon->monsterinfo.status_effect) > 0 && strcmp(strlen(pokemon->monsterinfo.status_effect), "Poisoned") == 0)
+			{
+				strcpy(pokemon->monsterinfo.status_effect, "");
+
+				Com_sprintf(client->pers.message, sizeof(client->pers.message), "%s healed from being poisoned", pokemon->classname);
+				client->pers.message_time = level.time;
+			}
+			break;
+		}
+		case 4:
+		{
+			if (client->pers.pok_enemy && client->pers.pok_enemy->health <= 40) 
+			{
+				client->pers.capturing = true;
+
+				gitem_t* pokeball = FindItem("PokeBalls");
+				client->pers.inventory[ITEM_INDEX(pokeball)]++;
+
+				Use_Weapon(ent, pokeball);
+
+				client->weapon_thunk = true;
+				client->buttons |= BUTTON_ATTACK;
+				Think_Weapon(ent);
+				client->pers.attack_hold_time = level.time;
+
+				client->pers.inventory[ITEM_INDEX(item)]--;
+				LoadBaseHudOpt(client);
+				return;
+			}
+			break;
+		}
+	}
+
+	client->pers.inventory[ITEM_INDEX(item)]--;
+	LoadBaseHudOpt(client);
+	client->pers.player_turn = false;
+}
+
+void Items(edict_t* ent) 
+{
+	int i, item_count;
+	gitem_t* item;
+	gclient_t* client = ent->client;
+
+	client->pers.battle_bound = 5;
+
+	char items[5][20] =
+	{
+		"Potion",
+		"Burn Heal",
+		"Paralyze Heal",
+		"Antidote",
+		"PokeBalls"
+	};
+
+	if (!client->pers.pok_in_play) 
+	{
+		return;
+	}
+
+	for (i = 0; i < 5; i++) 
+	{
+		item = FindItem(items[i]);
+		item_count = client->pers.inventory[ITEM_INDEX(item)];
+
+		Com_sprintf(client->pers.battle_options[i].text, sizeof(client->pers.battle_options[i].text), "%s  x%d", items[i], item_count);
+		client->pers.battle_options[i].Select = ProcessItem;
+	}
+}
+
+void SwitchPokemon(edict_t* ent) 
+{
+	gclient_t* client = ent->client;
+
+	client->pers.switching = true;
+
+	client->pers.pokemon_health[client->pers.pokemon_out] = client->pers.pok_in_play->health;
+
+	client->pers.pokemon_out = client->pers.battle_curr + client->pers.pokemon_page;
+	gi.dprintf("Switching to pokemon %d...\n", client->pers.pokemon_out);
+
+	APPLY_POK_DAMAGE(client->pers.pok_in_play, 10000);
+	client->pers.pok_in_play = NULL;
+	
+	gitem_t* pokeball = FindItem("PokeBalls");
+	client->pers.inventory[ITEM_INDEX(pokeball)]++;
+
+	Use_Weapon(ent, pokeball);
+
+	client->weapon_thunk = true;
+	client->buttons |= BUTTON_ATTACK;
+	Think_Weapon(ent);
+	client->pers.attack_hold_time = level.time;
+
+	LoadBaseHudOpt(client);
+}
+
+void SetupPokemonPage(gclient_t* client) 
+{
+	int i;
+
+	client->pers.battle_bound = 0;
+
+	for (i = 0; i < 5; i++) 
+	{
+		if (strlen(client->pers.pokemon[i + client->pers.pokemon_page])) 
+		{
+			strcpy(client->pers.battle_options[i].text, client->pers.pokemon[i + client->pers.pokemon_page]);
+			client->pers.battle_options[i].Select = SwitchPokemon;
+			client->pers.battle_bound++;
+		}
+		else 
+		{
+			memset(client->pers.battle_options[i].text, 0, sizeof(client->pers.battle_options[i].text));
+			client->pers.battle_options[i].Select = NULL;
+		}
+	}
+}
+
+void Pokemon(edict_t* ent) 
+{
+	gclient_t* client = ent->client;
+	client->pers.battle_curr = 0;
+	client->pers.pokemon_page = 0;
+
+	SetupPokemonPage(client);
+}
+
+void EndBattle(edict_t* ent) 
+{
+	gclient_t* client = ent->client;
+
+	if (client->pers.pok_in_play->deadflag == DEAD_NO) 
+	{
+		APPLY_POK_DAMAGE(client->pers.pok_in_play, 10000);
+	}
+	if (client->pers.pok_enemy->deadflag == DEAD_NO)
+	{
+		APPLY_POK_DAMAGE(client->pers.pok_enemy, 10000);
+	}
+
+	LoadBaseHudOpt(client);
+	client->pers.player_turn = true;
+
+	client->pers.pokemon_page = -1;
+	client->pers.pokemon_out = 0;
+
+	memset(client->pers.message, 0, sizeof(client->pers.message));
+	memset(client->pers.pokemon_health, 0, sizeof(client->pers.pokemon_health));
+
+	client->pers.pok_in_play = NULL;
+	client->pers.pok_enemy = NULL;
+
+	client->pers.in_battle = false;
+}
+
+void LoadBaseHudOpt(gclient_t* client)
+{
+	strcpy(client->pers.battle_options[0].text, "Fight");
+	strcpy(client->pers.battle_options[1].text, "Items");
+	strcpy(client->pers.battle_options[2].text, "PkMn");
+	strcpy(client->pers.battle_options[3].text, "Run");
+	strcpy(client->pers.battle_options[4].text, "");
+
+	client->pers.battle_options[0].Select = Fight;
+	client->pers.battle_options[1].Select = Items;
+	client->pers.battle_options[2].Select = Pokemon;
+	client->pers.battle_options[3].Select = EndBattle;
+	client->pers.battle_options[4].Select = NULL;
+
+	client->pers.battle_curr = 0;
+	client->pers.battle_bound = 4;
+}
+
 //=======================================================================
 
 /*
@@ -630,29 +910,27 @@ void InitClientPersistant(gclient_t* client)
 	client->pers.connected = true;
 
 	client->pers.in_battle = false;
+	client->pers.player_turn = true;
+	client->pers.capturing = false;
+	client->pers.switching = false;
 
-	strcpy(client->pers.battle_options[0].text, "Fight");
-	strcpy(client->pers.battle_options[1].text, "Items");
-	strcpy(client->pers.battle_options[2].text, "PkMn");
-	strcpy(client->pers.battle_options[3].text, "Run");
+	LoadBaseHudOpt(client);
 
-	//Temporary Until all functions are set.
-	for (i = 0; i < 4; i++) 
-	{
-		client->pers.battle_options[i].Select = NULL;
-	}
-
-	client->pers.battle_curr = 0;
 	client->pers.battle_hud_time = level.time;
 
+	memset(client->pers.pokemon, 0, sizeof(client->pers.pokemon));
 	strcpy(client->pers.pokemon[0], "monster_berserk");
 	memset(client->pers.pokemon_health, 0, sizeof(client->pers.pokemon_health));
+
 	client->pers.pok_in_play = NULL;
-
-	client->pers.next_pok_append = 0;
-	client->pers.pokemon_out = 0;
-
 	client->pers.pok_enemy = NULL;
+
+	client->pers.next_pok_append = 1;
+	client->pers.pokemon_out = 0;
+	client->pers.pokemon_page = -1;
+
+	strcpy(client->pers.message, "");
+	client->pers.message_time = level.time;
 
 	client->pers.attack_hold_time = level.time;
 }
@@ -1614,11 +1892,8 @@ void StartBattle(edict_t* ent, char* pokemon)
 	gi.linkentity(ent);
 
 	gitem_t* pokeball = FindItem("PokeBalls");
-
-	if (ent->client->pers.inventory[ITEM_INDEX(pokeball)] <= 0) 
-	{
-		ent->client->pers.inventory[ITEM_INDEX(pokeball)] += 2;
-	}
+	ent->client->pers.inventory[ITEM_INDEX(pokeball)]++;
+	
 
 	Use_Weapon(ent, pokeball);
 
@@ -1639,7 +1914,97 @@ void Cmd_StartBattle_f(edict_t* ent)
 		return;
 	}
 
-	StartBattle(ent, "monster_berserk");
+	if (gi.argc() < 2 || gi.argc() > 3) 
+	{
+		gi.cprintf(ent, PRINT_HIGH,
+			"Usage: startbattle classname\n");
+		return;
+	}
+
+	StartBattle(ent, gi.argv(1));
+}
+
+qboolean ProcessStatusEffect(edict_t* ent, char* name, gclient_t* client) 
+{
+	int random_num;
+
+	if (strcmp(ent->monsterinfo.status_effect, "Burned") == 0) 
+	{
+		APPLY_POK_DAMAGE(ent, 20);
+		Com_sprintf(client->pers.message, sizeof(client->pers.message), "%s was burned.", name);
+	}
+	else if (strcmp(ent->monsterinfo.status_effect, "Poisoned") == 0) 
+	{
+		APPLY_POK_DAMAGE(ent, 10);
+		Com_sprintf(client->pers.message, sizeof(client->pers.message), "%s is poisoned.", name);
+	}
+	else if (strcmp(ent->monsterinfo.status_effect, "Paralyzed") == 0)
+	{
+		random_num = (int)((crandom() * 5) + 1);
+		Com_sprintf(client->pers.message, sizeof(client->pers.message), "%s is paralyzed.", name);
+
+		return random_num == 2;
+	}
+	else if (strcmp(ent->monsterinfo.status_effect, "Asleep") == 0)
+	{
+		Com_sprintf(client->pers.message, sizeof(client->pers.message), "%s is asleep.", name);
+		return true;
+	}
+	else if (strcmp(ent->monsterinfo.status_effect, "Confused") == 0)
+	{
+		random_num = (int)((crandom() * 5) + 1);
+
+		if (random_num == 4) 
+		{
+			APPLY_POK_DAMAGE(ent, 10);
+			Com_sprintf(client->pers.message, sizeof(client->pers.message), "%s is confused. It hurt itself.", name);
+			return true;
+		}
+
+		Com_sprintf(client->pers.message, sizeof(client->pers.message), "%s is confused.", name);
+	}
+
+	return false;
+}
+
+void ProcessSelection(gclient_t* client, short selection) 
+{
+	if (selection > 0)
+	{
+		client->pers.battle_curr--;
+
+		if (client->pers.battle_curr < 0)
+		{
+			if (client->pers.pokemon_page > 0)
+			{
+				client->pers.pokemon_page -= 5;
+				SetupPokemonPage(client);
+				client->pers.battle_curr = 4;
+			}
+			else
+			{
+				client->pers.battle_curr = 0;
+			}
+		}
+	}
+	else if (selection < 0)
+	{
+		client->pers.battle_curr++;
+
+		if (client->pers.battle_curr >= client->pers.battle_bound) 
+		{
+			if (client->pers.battle_curr > 4 && client->pers.pokemon_page >= 0 && strlen(client->pers.pokemon[client->pers.battle_curr + client->pers.pokemon_page]))
+			{
+				client->pers.pokemon_page += 5;
+				SetupPokemonPage(client);
+				client->pers.battle_curr = 0;
+			}
+			else 
+			{
+				client->pers.battle_curr = client->pers.battle_bound - 1;
+			}
+		}
+	}
 }
 
 /*
@@ -1654,8 +2019,13 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 {
 	gclient_t	*client;
 	edict_t	*other;
-	int		i, j;
+	int		i, j, ai_move, encounter_chance = 0, random_pok_index = 0;
 	pmove_t	pm;
+	short selection, select;
+	qboolean skip_turn = false;
+	char name_buf[50];
+		
+	static qboolean applied_status = false;
 
 	level.current_entity = ent;
 	client = ent->client;
@@ -1674,33 +2044,110 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 	{
 		client->ps.pmove.pm_type = PM_FREEZE;
 
-		if (client->buttons & BUTTON_ATTACK && level.time - client->pers.attack_hold_time >= 1.0) 
+		if ((!client->pers.switching && !client->pers.capturing) 
+			&& ((client->pers.pok_in_play && client->pers.pok_in_play->deadflag == DEAD_DEAD) || (client->pers.pok_enemy && client->pers.pok_enemy->deadflag == DEAD_DEAD))
+			)
+		{
+			EndBattle(ent);
+			return;
+		}
+
+		if (client->buttons & BUTTON_ATTACK && level.time - client->pers.attack_hold_time >= 1.5)
 		{
 			client->weapon_thunk = false;
 			client->buttons &= ~BUTTON_ATTACK;
+		};
+
+		selection = ucmd->forwardmove;
+		select = ucmd->upmove;
+		skip_turn = false;
+
+		if (client->pers.player_turn) 
+		{
+			if (client->pers.pok_in_play && strlen(client->pers.pok_in_play->monsterinfo.status_effect) && !applied_status) 
+			{
+				skip_turn = ProcessStatusEffect(client->pers.pok_in_play, client->pers.pok_in_play->classname, client);
+				applied_status = true;
+
+				if (skip_turn) 
+				{
+					client->pers.player_turn = false;
+					applied_status = false;
+				}
+			}
+
+			if (level.time - client->pers.battle_hud_time >= 0.5 && !strlen(client->pers.message) && !skip_turn)
+			{
+				ProcessSelection(client, selection);
+
+				if (select >= 10 && client->pers.battle_options[client->pers.battle_curr].Select)
+				{
+					client->pers.battle_options[client->pers.battle_curr].Select(ent);
+					applied_status = false;
+				}
+			}
+		}
+		else 
+		{
+			if (client->pers.pok_enemy && strlen(client->pers.pok_enemy->monsterinfo.status_effect) && !applied_status)
+			{
+				Com_sprintf(name_buf, sizeof(name_buf), "Enemy %s", client->pers.pok_enemy->classname);
+				skip_turn = ProcessStatusEffect(client->pers.pok_enemy, name_buf, client);
+				applied_status = true;
+
+				if (skip_turn) 
+				{
+					client->pers.player_turn = true;
+					applied_status = false;
+				}
+			}
+
+			if (!skip_turn && !strlen(client->pers.message))
+			{
+				ai_move = (int)(random() * 4);
+
+				gi.dprintf("Doing move %d\n", ai_move);
+
+				pokmove_t move = client->pers.pok_enemy->monsterinfo.moves[ai_move];
+
+				if (strlen(move.effect))
+				{
+					strcpy(client->pers.pok_enemy->monsterinfo.status_effect, move.effect);
+				}
+
+				APPLY_POK_DAMAGE(client->pers.pok_in_play, move.damage);
+
+				Com_sprintf(client->pers.message, sizeof(client->pers.message), "Enemy %s used %s", client->pers.pok_enemy->classname, move.move);
+				client->pers.message_time = level.time;
+
+				LoadBaseHudOpt(client);
+				client->pers.player_turn = true;
+				applied_status = false;
+			}
 		}
 
-		short selection = ucmd->forwardmove;
-
-		if (level.time - ent->client->pers.battle_hud_time >= 0.5)
+		if (strlen(client->pers.message) && level.time - client->pers.message_time >= 3.0) 
 		{
-			if (selection > 0)
-			{
-				client->pers.battle_curr = client->pers.battle_curr - 1 >= 0 ? client->pers.battle_curr - 1 : 3;
-			}
-			else if (selection < 0)
-			{
-				client->pers.battle_curr = client->pers.battle_curr + 1 < 4 ? client->pers.battle_curr + 1 : 0;
-			}
+			strcpy(client->pers.message, "");
+		}
 
-			gi.dprintf("%d\n", client->pers.battle_curr);
-
+		if (level.time - client->pers.battle_hud_time >= 0.5)
+		{
 			BattleHud(ent);
 			client->pers.battle_hud_time = level.time;
 		}
+		return;
+	}
 
+	if (ucmd->forwardmove != 0 || ucmd->sidemove != 0) 
+	{
+		encounter_chance = (int)(random() * 200);
+	}
 
-
+	if (encounter_chance == 69) 
+	{
+		random_pok_index = (int)(random() * 10);
+		StartBattle(ent, pocket_monsters[random_pok_index]);
 		return;
 	}
 
@@ -1771,8 +2218,8 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 			gi.sound(ent, CHAN_VOICE, gi.soundindex("*jump1.wav"), 1, ATTN_NORM, 0);
 			PlayerNoise(ent, ent->s.origin, PNOISE_SELF);
 
-			StartBattle(ent, "monster_berserk");
-			return;
+			//StartBattle(ent, "monster_berserk");
+			//return;
 		}
 
 		ent->viewheight = pm.viewheight;

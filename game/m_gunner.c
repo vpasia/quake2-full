@@ -619,6 +619,13 @@ void SP_monster_gunner (edict_t *self)
 	self->monsterinfo.sight = gunner_sight;
 	self->monsterinfo.search = gunner_search;
 
+	memset(self->monsterinfo.status_effect, 0, sizeof(self->monsterinfo.status_effect));
+
+	DEF_POK_MOVE(0, "Spray", 45, "");
+	DEF_POK_MOVE(1, "Cluster", 60, "");
+	DEF_POK_MOVE(2, "Shockwave", 20, "");
+	DEF_POK_MOVE(3, "Gas", 30, "Asleep");
+
 	gi.linkentity (self);
 
 	self->monsterinfo.currentmove = &gunner_move_stand;	

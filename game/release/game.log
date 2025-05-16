@@ -1,6 +1,73 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(520,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  m_brain.c
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_brain.c(48,43): warning C4100: 'other': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_brain.c(542,65): warning C4100: 'damage': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_brain.c(542,55): warning C4100: 'kick': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_brain.c(542,42): warning C4100: 'other': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_brain.c(586,90): warning C4100: 'point': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_brain.c(586,61): warning C4100: 'attacker': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_brain.c(586,41): warning C4100: 'inflictor': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_brain.c(669,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_brain.c(670,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_brain.c(671,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_brain.c(672,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  m_gladiator.c
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_gladiator.c(49,47): warning C4100: 'other': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_gladiator.c(240,69): warning C4100: 'damage': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_gladiator.c(240,59): warning C4100: 'kick': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_gladiator.c(240,46): warning C4100: 'other': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_gladiator.c(308,94): warning C4100: 'point': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_gladiator.c(308,65): warning C4100: 'attacker': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_gladiator.c(308,45): warning C4100: 'inflictor': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_gladiator.c(384,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_gladiator.c(385,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_gladiator.c(386,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_gladiator.c(387,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  m_mutant.c
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_mutant.c(62,44): warning C4100: 'other': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_mutant.c(308,85): warning C4100: 'surf': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_mutant.c(308,66): warning C4100: 'plane': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_mutant.c(496,66): warning C4100: 'damage': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_mutant.c(496,56): warning C4100: 'kick': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_mutant.c(496,43): warning C4100: 'other': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_mutant.c(574,91): warning C4100: 'point': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_mutant.c(574,62): warning C4100: 'attacker': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_mutant.c(574,42): warning C4100: 'inflictor': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_mutant.c(659,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_mutant.c(660,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_mutant.c(661,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_mutant.c(662,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  m_soldier.c
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_soldier.c(409,67): warning C4100: 'damage': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_soldier.c(409,57): warning C4100: 'kick': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_soldier.c(409,44): warning C4100: 'other': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_soldier.c(792,44): warning C4100: 'other': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_soldier.c(1144,63): warning C4100: 'attacker': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_soldier.c(1144,43): warning C4100: 'inflictor': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_soldier.c(1248,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_soldier.c(1249,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_soldier.c(1250,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_soldier.c(1251,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_soldier.c(1276,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_soldier.c(1277,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_soldier.c(1278,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_soldier.c(1279,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_soldier.c(1302,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_soldier.c(1303,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_soldier.c(1304,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_soldier.c(1305,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  m_tank.c
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_tank.c(49,42): warning C4100: 'other': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_tank.c(288,54): warning C4100: 'kick': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_tank.c(288,41): warning C4100: 'other': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_tank.c(753,89): warning C4100: 'point': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_tank.c(753,60): warning C4100: 'attacker': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_tank.c(753,40): warning C4100: 'inflictor': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_tank.c(849,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_tank.c(850,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_tank.c(851,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\m_tank.c(852,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   p_client.c
-  p_hud.c
 C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(70,42): warning C4100: 'self': unreferenced formal parameter
 C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(179,66): warning C4100: 'damage': unreferenced formal parameter
 C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(179,56): warning C4100: 'kick': unreferenced formal parameter
@@ -8,21 +75,34 @@ C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.
 C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(179,28): warning C4100: 'self': unreferenced formal parameter
 C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(211,46): warning C4100: 'inflictor': unreferenced formal parameter
 C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(501,91): warning C4100: 'point': unreferenced formal parameter
-C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(634,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(635,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(636,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(637,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(648,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(959,89): warning C4100: 'point': unreferenced formal parameter
-C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(959,60): warning C4100: 'attacker': unreferenced formal parameter
-C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(959,40): warning C4100: 'inflictor': unreferenced formal parameter
-C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(1398,3): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(1403,2): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(1443,2): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_hud.c(234,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_hud.c(245,3): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_hud.c(386,2): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(621,3): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(645,3): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(681,65): warning C4047: 'function': 'const char *' differs in levels of indirection from 'size_t'
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(681,65): warning C4024: 'strcmp': different types for formal and actual parameter 1
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(683,5): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(692,65): warning C4047: 'function': 'const char *' differs in levels of indirection from 'size_t'
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(692,65): warning C4024: 'strcmp': different types for formal and actual parameter 1
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(694,5): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(703,65): warning C4047: 'function': 'const char *' differs in levels of indirection from 'size_t'
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(703,65): warning C4024: 'strcmp': different types for formal and actual parameter 1
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(705,5): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(810,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(861,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(862,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(863,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(864,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(865,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(922,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(932,2): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(889,8): warning C4101: 'i': unreferenced local variable
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(1237,89): warning C4100: 'point': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(1237,60): warning C4100: 'attacker': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(1237,40): warning C4100: 'inflictor': unreferenced formal parameter
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(1676,3): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(1681,2): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(1721,2): warning C4996: 'strncpy': This function or variable may be unsafe. Consider using strncpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(2115,6): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_client.c(2131,4): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
   Generating Code...
-C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-full\game\p_hud.c(503,1): warning C4701: potentially uninitialized local variable 'cells' used
      Creating library .\..\release\gamex86.lib and object .\..\release\gamex86.exp
   game.vcxproj -> C:\Users\vince\Desktop\School Code\NJIT\IT266\Quake 2\quake2-8.50\pokemon\gamex86.dll

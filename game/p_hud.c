@@ -304,31 +304,33 @@ void HelpComputer (edict_t *ent)
 	char	string[1024];
 	char	*sk;
 
-	if (skill->value == 0)
+	/*if (skill->value == 0)
 		sk = "easy";
 	else if (skill->value == 1)
 		sk = "medium";
 	else if (skill->value == 2)
 		sk = "hard";
 	else
-		sk = "hard+";
+		sk = "hard+";*/
 
 	// send the layout
-	Com_sprintf (string, sizeof(string),
-		"xv 32 yv 8 picn help "			// background
-		"xv 202 yv 12 string2 \"%s\" "		// skill
-		"xv 0 yv 24 cstring2 \"%s\" "		// level name
-		"xv 0 yv 54 cstring2 \"%s\" "		// help 1
-		"xv 0 yv 110 cstring2 \"%s\" "		// help 2
-		"xv 50 yv 164 string2 \" kills     goals    secrets\" "
-		"xv 50 yv 172 string2 \"%3i/%3i     %i/%i       %i/%i\" ", 
-		sk,
-		level.level_name,
-		game.helpmessage1,
-		game.helpmessage2,
-		level.killed_monsters, level.total_monsters, 
-		level.found_goals, level.total_goals,
-		level.found_secrets, level.total_secrets);
+	//Com_sprintf (string, sizeof(string),
+	//	"xv 32 yv 8 picn help "			// background
+	//	"xv 202 yv 12 string2 \"%s\" "		// skill
+	//	"xv 0 yv 24 cstring2 \"%s\" "		// level name
+	//	"xv 0 yv 54 cstring2 \"%s\" "		// help 1
+	//	"xv 0 yv 110 cstring2 \"%s\" "		// help 2
+	//	"xv 50 yv 164 string2 \" kills     goals    secrets\" "
+	//	"xv 50 yv 172 string2 \"%3i/%3i     %i/%i       %i/%i\" ", 
+	//	sk,
+	//	level.level_name,
+	//	game.helpmessage1,
+	//	game.helpmessage2,
+	//	level.killed_monsters, level.total_monsters, 
+	//	level.found_goals, level.total_goals,
+	//	level.found_secrets, level.total_secrets);
+
+	Com_sprintf(string, sizeof(string), "xv 15 yv 0 picn pok_help ");
 
 	gi.WriteByte (svc_layout);
 	gi.WriteString (string);
@@ -348,40 +350,89 @@ void BattleHud(edict_t* ent)
 	char	string[1024];
 
 	char	buffer[1024];
-	char*	selected[4] = { "", "", "", "" };
-	int		curr, pok_health, pok_ehealth;
 
-	pok_health = ent->client->pers.pok_in_play ? ent->client->pers.pok_in_play->health : 0;
-	pok_ehealth = ent->client->pers.pok_enemy ? ent->client->pers.pok_enemy->health : 0;
+	char	pok_name[50], pok_ename[50];
+	char*	selected[5] = { "", "", "", "", ""};
+	int		curr, pok_health = 0, pok_ehealth = 0;
+
+	ent->client->showinventory = false;
+	ent->client->showhelp = false;
+
+	strcpy(pok_name, "???");
+	strcpy(pok_ename, "???");
+
+	if (ent->client->pers.pok_in_play) 
+	{
+		strcpy(pok_name, ent->client->pers.pok_in_play->classname);
+		pok_health = ent->client->pers.pok_in_play->health;
+	}
+
+	if (ent->client->pers.pok_enemy)
+	{
+		strcpy(pok_ename, ent->client->pers.pok_enemy->classname);
+		pok_ehealth = ent->client->pers.pok_enemy->health;
+	}
 	
 	// send the layout
 	Com_sprintf(string, sizeof(string),
 		"xv 28 yv 200 picn pok_hud "			// background
-		"xv 28 yv 180 string \"Health: %d\" "
-		"xv 190 yv 8 string \"Enemy Health: %d\" ",
+		"xv 28 yv 180 string \"%s Health: %d\" "
+		"xv 190 yv 8 string \"Enemy %s Health: %d\" ",
+		pok_name,
 		pok_health,
+		pok_ename,
 		pok_ehealth
 		);
 
 	curr = ent->client->pers.battle_curr;
 
-	if (curr >= 0 && curr < 4)
-		selected[curr] = "\x0d";
+	if (strlen(ent->client->pers.message)) 
+	{
+		Com_sprintf(buffer, sizeof(buffer), "xv 45 yv 238 string2 \"%s\" ", ent->client->pers.message);
+	}
+	else 
+	{
+		if (curr >= 0 && curr < 5)
+			selected[curr] = "\x0d";
 
-	Com_sprintf(buffer, sizeof(buffer),
-		"xv 76 yv 225 string2 \"%s%s\" "
-		"xv 76 yv 250 string2 \"%s%s\" "
-		"xv 226 yv 225 string2 \"%s%s\" "
-		"xv 226 yv 250 string2 \"%s%s\" ",
-		selected[0],
-		ent->client->pers.battle_options[0].text,
-		selected[1],
-		ent->client->pers.battle_options[1].text,
-		selected[2],
-		ent->client->pers.battle_options[2].text,
-		selected[3],
-		ent->client->pers.battle_options[3].text
-	);
+		if (!strlen(ent->client->pers.battle_options[4].text)) 
+		{
+			Com_sprintf(buffer, sizeof(buffer),
+				"xv 76 yv 225 string2 \"%s%s\" "
+				"xv 76 yv 250 string2 \"%s%s\" "
+				"xv 226 yv 225 string2 \"%s%s\" "
+				"xv 226 yv 250 string2 \"%s%s\" ",
+				selected[0],
+				ent->client->pers.battle_options[0].text,
+				selected[1],
+				ent->client->pers.battle_options[1].text,
+				selected[2],
+				ent->client->pers.battle_options[2].text,
+				selected[3],
+				ent->client->pers.battle_options[3].text
+			);
+		}
+		else 
+		{
+			Com_sprintf(buffer, sizeof(buffer),
+				"xv 76 yv 215 string2 \"%s%s\" "
+				"xv 76 yv 228 string2 \"%s%s\" "
+				"xv 76 yv 240 string2 \"%s%s\" "
+				"xv 76 yv 253 string2 \"%s%s\" "
+				"xv 76 yv 266 string2 \"%s%s\" ",
+				selected[0],
+				ent->client->pers.battle_options[0].text,
+				selected[1],
+				ent->client->pers.battle_options[1].text,
+				selected[2],
+				ent->client->pers.battle_options[2].text,
+				selected[3],
+				ent->client->pers.battle_options[3].text,
+				selected[4],
+				ent->client->pers.battle_options[4].text
+			);
+		}
+	}
 
 	strcat(string, buffer);
 

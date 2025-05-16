@@ -664,6 +664,13 @@ void SP_monster_brain (edict_t *self)
 	self->monsterinfo.search = brain_search;
 	self->monsterinfo.idle = brain_idle;
 
+	memset(self->monsterinfo.status_effect, 0, sizeof(self->monsterinfo.status_effect));
+
+	DEF_POK_MOVE(0, "Brain", 35, "");
+	DEF_POK_MOVE(1, "Zap", 40, "");
+	DEF_POK_MOVE(2, "Jolt", 15, "");
+	DEF_POK_MOVE(3, "Mind", 30, "");
+
 	self->monsterinfo.power_armor_type = POWER_ARMOR_SCREEN;
 	self->monsterinfo.power_armor_power = 100;
 

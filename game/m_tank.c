@@ -844,6 +844,13 @@ void SP_monster_tank (edict_t *self)
 	self->monsterinfo.sight = tank_sight;
 	self->monsterinfo.idle = tank_idle;
 
+	memset(self->monsterinfo.status_effect, 0, sizeof(self->monsterinfo.status_effect));
+
+	DEF_POK_MOVE(0, "Rocket", 100, "");
+	DEF_POK_MOVE(1, "Cannon", 80, "");
+	DEF_POK_MOVE(2, "Siege", 90, "");
+	DEF_POK_MOVE(3, "Ballistic", 120, "");
+
 	gi.linkentity (self);
 	
 	self->monsterinfo.currentmove = &tank_move_stand;

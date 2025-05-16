@@ -654,6 +654,13 @@ void SP_monster_mutant (edict_t *self)
 	self->monsterinfo.idle = mutant_idle;
 	self->monsterinfo.checkattack = mutant_checkattack;
 
+	memset(self->monsterinfo.status_effect, 0, sizeof(self->monsterinfo.status_effect));
+
+	DEF_POK_MOVE(0, "Crush", 45, "");
+	DEF_POK_MOVE(1, "Surge", 50, "");
+	DEF_POK_MOVE(2, "Smash", 40, "");
+	DEF_POK_MOVE(3, "Tumor", 60, "");
+
 	gi.linkentity (self);
 	
 	self->monsterinfo.currentmove = &mutant_move_stand;

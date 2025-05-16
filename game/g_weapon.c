@@ -401,7 +401,7 @@ static void Grenade_Explode (edict_t *ent)
 	int			mod;
 	edict_t*	spawned_pokemon;
 	gclient_t*	client;
-	int			health_corrector;
+	int			curr, health_corrector;
 
 	if (ent->owner->client)
 		PlayerNoise(ent->owner, ent->s.origin, PNOISE_IMPACT);
@@ -432,7 +432,7 @@ static void Grenade_Explode (edict_t *ent)
 	else
 		mod = MOD_G_SPLASH;
 
-	if (ent->owner->client && (mod & MOD_HG_SPLASH)) 
+	if (ent->owner->client && (mod & MOD_HG_SPLASH) && !ent->owner->client->pers.capturing) 
 	{
 		client = ent->owner->client;
 
@@ -440,7 +440,7 @@ static void Grenade_Explode (edict_t *ent)
 		VectorSet(offset, 0, 0, 50);
 		VectorAdd(origin, offset, origin);
 
-		int curr = client->pers.pokemon_out;
+		curr = client->pers.pokemon_out;
 
 		spawned_pokemon = Spawn_Monster(ent->owner, client->pers.pokemon[curr], origin, ent->owner->s.angles, AI_GOOD_GUY);
 		
@@ -451,6 +451,17 @@ static void Grenade_Explode (edict_t *ent)
 		}
 
 		client->pers.pok_in_play = spawned_pokemon;
+
+		if (client->pers.switching) 
+		{
+			client->pers.switching = false;
+		}
+	}
+	else if (ent->owner->client && ent->owner->client->pers.capturing)
+	{
+		strcpy(ent->owner->client->pers.pokemon[ent->owner->client->pers.next_pok_append++], ent->owner->client->pers.pok_enemy->classname);
+		APPLY_POK_DAMAGE(ent->owner->client->pers.pok_enemy, 10000);
+		ent->owner->client->pers.capturing = false;
 	}
 	else 
 	{
@@ -558,7 +569,7 @@ void fire_grenade2 (edict_t *self, vec3_t start, vec3_t aimdir, int damage, int 
 	VectorMA (grenade->velocity, 200 + crandom() * 10.0, up, grenade->velocity);
 	VectorMA (grenade->velocity, crandom() * 10.0, right, grenade->velocity);
 	VectorSet (grenade->avelocity, 300, 300, 300);
-	grenade->movetype = MOVETYPE_BOUNCE;
+	grenade->movetype = MOVETYPE_TOSS;
 	grenade->clipmask = MASK_SHOT;
 	grenade->solid = SOLID_BBOX;
 	grenade->s.effects |= EF_GRENADE;

@@ -1055,7 +1055,7 @@ void Cmd_Whereami_f(edict_t* ent)
 		return;
 	}
 
-	gi.dprintf("Player at (%f, %f, %f) wtih Angles (%f, %f, %f)\n", ent->s.origin[0], ent->s.origin[1], ent->s.origin[2], ent->s.angles[0], ent->s.angles[1], ent->s.angles[2]);
+	gi.dprintf("Player at (%f, %f, %f) with Angles (%f, %f, %f)\n", ent->s.origin[0], ent->s.origin[1], ent->s.origin[2], ent->s.angles[0], ent->s.angles[1], ent->s.angles[2]);
 }
 
 
