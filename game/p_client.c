@@ -594,13 +594,13 @@ void player_die (edict_t *self, edict_t *inflictor, edict_t *attacker, int damag
 	gi.linkentity (self);
 }
 
-char* pocket_monsters[10] = 
+static char pocket_monsters[10][30] =
 {
+	"monster_berserk",
 	"monster_soldier_light",       
 	"monster_soldier_ss",  
 	"monster_soldier",         
-	"monster_gunner",         
-	"monster_berserk",         
+	"monster_gunner",                  
 	"monster_parasite",        
 	"monster_brain",           
 	"monster_tank",            
@@ -608,7 +608,71 @@ char* pocket_monsters[10] =
 	"monster_mutant"
 };
 
+void Cmd_GiveAllPok_f(edict_t* ent) 
+{
+	int i;
+
+	if (!ent) 
+	{
+		return;
+	}
+
+	if (!ent->client) 
+	{
+		return;
+	}
+
+	ent->client->pers.next_pok_append = 0;
+
+	for (i = 0; i < 10; i++) 
+	{
+		strcpy(ent->client->pers.pokemon[i], pocket_monsters[i]);
+		ent->client->pers.next_pok_append++;
+	}
+}
+
 void LoadBaseHudOpt(gclient_t* client);
+
+void Cmd_EnemyDo_f(edict_t* ent) 
+{
+	if (!ent)
+	{
+		return;
+	}
+
+	if (!ent->client)
+	{
+		return;
+	}
+
+	if (!ent->client->pers.pok_enemy || !ent->client->pers.pok_in_play) 
+	{
+		return;
+	}
+
+	if (gi.argc() < 2 || gi.argc() > 3) 
+	{
+		gi.cprintf(ent, PRINT_HIGH,
+			"Usage: enemydo move_num\n");
+		return;
+	}
+
+	pokmove_t move = ent->client->pers.pok_enemy->monsterinfo.moves[atoi(gi.argv(1))];
+
+	if (strlen(move.effect))
+	{
+		strcpy(ent->client->pers.pok_in_play->monsterinfo.status_effect, move.effect);
+	}
+
+	APPLY_POK_DAMAGE(ent->client->pers.pok_in_play, move.damage);
+
+	Com_sprintf(ent->client->pers.message, sizeof(ent->client->pers.message), "E %s used %s", ent->client->pers.pok_enemy->classname, move.move);
+	ent->client->pers.message_time = level.time;
+
+	LoadBaseHudOpt(ent->client);
+	ent->client->pers.player_turn = true;
+	ent->client->pers.applied_status = false;
+}
 
 void ProcessMove(edict_t* ent) 
 {
@@ -659,6 +723,7 @@ void ProcessItem(edict_t* ent)
 
 	if (!item_count || !pokemon) 
 	{
+		LoadBaseHudOpt(client);
 		return;
 	}
 
@@ -673,39 +738,53 @@ void ProcessItem(edict_t* ent)
 
 				Com_sprintf(client->pers.message, sizeof(client->pers.message), "%s healed %d hp", pokemon->classname, heal_dmg);
 				client->pers.message_time = level.time;
+
+				client->pers.inventory[ITEM_INDEX(item)]--;
+				client->pers.player_turn = false;
 			}
 			break;
 		}
 		case 1:
 		{
-			if (strlen(pokemon->monsterinfo.status_effect) > 0 && strcmp(strlen(pokemon->monsterinfo.status_effect), "Burned") == 0) 
+			if (strlen(pokemon->monsterinfo.status_effect) > 0 && strcmp(pokemon->monsterinfo.status_effect, "Burned") == 0) 
 			{
 				strcpy(pokemon->monsterinfo.status_effect, "");
 
+				gi.dprintf("Pokemon status effect: %s\n", pokemon->monsterinfo.status_effect);
+
 				Com_sprintf(client->pers.message, sizeof(client->pers.message), "%s healed from being burned", pokemon->classname);
 				client->pers.message_time = level.time;
+
+				client->pers.inventory[ITEM_INDEX(item)]--;
+				client->pers.player_turn = false;
 			}
 			break;
 		}
 		case 2:
 		{
-			if (strlen(pokemon->monsterinfo.status_effect) > 0 && strcmp(strlen(pokemon->monsterinfo.status_effect), "Paralyzed") == 0)
+			if (strlen(pokemon->monsterinfo.status_effect) > 0 && strcmp(pokemon->monsterinfo.status_effect, "Paralyzed") == 0)
 			{
 				strcpy(pokemon->monsterinfo.status_effect, "");
 
 				Com_sprintf(client->pers.message, sizeof(client->pers.message), "%s healed from being paralyzed", pokemon->classname);
 				client->pers.message_time = level.time;
+
+				client->pers.inventory[ITEM_INDEX(item)]--;
+				client->pers.player_turn = false;
 			}
 			break;
 		}
 		case 3:
 		{
-			if (strlen(pokemon->monsterinfo.status_effect) > 0 && strcmp(strlen(pokemon->monsterinfo.status_effect), "Poisoned") == 0)
+			if (strlen(pokemon->monsterinfo.status_effect) > 0 && strcmp(pokemon->monsterinfo.status_effect, "Poisoned") == 0)
 			{
 				strcpy(pokemon->monsterinfo.status_effect, "");
 
 				Com_sprintf(client->pers.message, sizeof(client->pers.message), "%s healed from being poisoned", pokemon->classname);
 				client->pers.message_time = level.time;
+
+				client->pers.inventory[ITEM_INDEX(item)]--;
+				client->pers.player_turn = false;
 			}
 			break;
 		}
@@ -733,9 +812,8 @@ void ProcessItem(edict_t* ent)
 		}
 	}
 
-	client->pers.inventory[ITEM_INDEX(item)]--;
+	
 	LoadBaseHudOpt(client);
-	client->pers.player_turn = false;
 }
 
 void Items(edict_t* ent) 
@@ -795,6 +873,7 @@ void SwitchPokemon(edict_t* ent)
 	client->pers.attack_hold_time = level.time;
 
 	LoadBaseHudOpt(client);
+	client->pers.pokemon_page = -1;
 }
 
 void SetupPokemonPage(gclient_t* client) 
@@ -913,6 +992,7 @@ void InitClientPersistant(gclient_t* client)
 	client->pers.player_turn = true;
 	client->pers.capturing = false;
 	client->pers.switching = false;
+	client->pers.applied_status = false;
 
 	LoadBaseHudOpt(client);
 
@@ -2025,8 +2105,6 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 	qboolean skip_turn = false;
 	char name_buf[50];
 		
-	static qboolean applied_status = false;
-
 	level.current_entity = ent;
 	client = ent->client;
 
@@ -2064,15 +2142,15 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 
 		if (client->pers.player_turn) 
 		{
-			if (client->pers.pok_in_play && strlen(client->pers.pok_in_play->monsterinfo.status_effect) && !applied_status) 
+			if (client->pers.pok_in_play && strlen(client->pers.pok_in_play->monsterinfo.status_effect) && !client->pers.applied_status) 
 			{
 				skip_turn = ProcessStatusEffect(client->pers.pok_in_play, client->pers.pok_in_play->classname, client);
-				applied_status = true;
+				client->pers.applied_status = true;
 
 				if (skip_turn) 
 				{
 					client->pers.player_turn = false;
-					applied_status = false;
+					client->pers.applied_status = false;
 				}
 			}
 
@@ -2083,22 +2161,23 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 				if (select >= 10 && client->pers.battle_options[client->pers.battle_curr].Select)
 				{
 					client->pers.battle_options[client->pers.battle_curr].Select(ent);
-					applied_status = false;
+
+					if(!client->pers.player_turn) client->pers.applied_status = false;
 				}
 			}
 		}
 		else 
 		{
-			if (client->pers.pok_enemy && strlen(client->pers.pok_enemy->monsterinfo.status_effect) && !applied_status)
+			if (client->pers.pok_enemy && strlen(client->pers.pok_enemy->monsterinfo.status_effect) && !client->pers.applied_status)
 			{
-				Com_sprintf(name_buf, sizeof(name_buf), "Enemy %s", client->pers.pok_enemy->classname);
+				Com_sprintf(name_buf, sizeof(name_buf), "E %s", client->pers.pok_enemy->classname);
 				skip_turn = ProcessStatusEffect(client->pers.pok_enemy, name_buf, client);
-				applied_status = true;
+				client->pers.applied_status = true;
 
 				if (skip_turn) 
 				{
 					client->pers.player_turn = true;
-					applied_status = false;
+					client->pers.applied_status = false;
 				}
 			}
 
@@ -2112,17 +2191,17 @@ void ClientThink (edict_t *ent, usercmd_t *ucmd)
 
 				if (strlen(move.effect))
 				{
-					strcpy(client->pers.pok_enemy->monsterinfo.status_effect, move.effect);
+					strcpy(client->pers.pok_in_play->monsterinfo.status_effect, move.effect);
 				}
 
 				APPLY_POK_DAMAGE(client->pers.pok_in_play, move.damage);
 
-				Com_sprintf(client->pers.message, sizeof(client->pers.message), "Enemy %s used %s", client->pers.pok_enemy->classname, move.move);
+				Com_sprintf(client->pers.message, sizeof(client->pers.message), "E %s used %s", client->pers.pok_enemy->classname, move.move);
 				client->pers.message_time = level.time;
 
 				LoadBaseHudOpt(client);
 				client->pers.player_turn = true;
-				applied_status = false;
+				client->pers.applied_status = false;
 			}
 		}
 

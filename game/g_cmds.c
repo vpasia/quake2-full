@@ -1158,6 +1158,10 @@ void ClientCommand (edict_t *ent)
 		Cmd_Battle_f(ent);
 	else if (Q_stricmp(cmd, "startbattle") == 0)
 		Cmd_StartBattle_f(ent);
+	else if (Q_stricmp(cmd, "giveallpok") == 0)
+		Cmd_GiveAllPok_f(ent);
+	else if (Q_stricmp(cmd, "enemydo") == 0)
+		Cmd_EnemyDo_f(ent);
 	else	// anything that doesn't match a command will be a chat
 		Cmd_Say_f (ent, false, true);
 }

@@ -813,6 +813,8 @@ void Use_Weapon(edict_t* ent, gitem_t* item);
 ///
 void StartBattle(edict_t* ent, char* pokemon);
 void Cmd_StartBattle_f(edict_t* ent);
+void Cmd_GiveAllPok_f(edict_t* ent);
+void Cmd_EnemyDo_f(edict_t* ent);
 
 //
 // g_pweapon.c
@@ -912,6 +914,7 @@ typedef struct
 	qboolean	player_turn;
 	qboolean	capturing;
 	qboolean	switching;
+	qboolean	applied_status;
 
 	hud_ent		battle_options[5];
 	int			battle_curr;

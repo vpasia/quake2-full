@@ -377,7 +377,7 @@ void BattleHud(edict_t* ent)
 	Com_sprintf(string, sizeof(string),
 		"xv 28 yv 200 picn pok_hud "			// background
 		"xv 28 yv 180 string \"%s Health: %d\" "
-		"xv 190 yv 8 string \"Enemy %s Health: %d\" ",
+		"xv 160 yv 8 string \"Enemy %s Health: %d\" ",
 		pok_name,
 		pok_health,
 		pok_ename,
@@ -395,7 +395,7 @@ void BattleHud(edict_t* ent)
 		if (curr >= 0 && curr < 5)
 			selected[curr] = "\x0d";
 
-		if (!strlen(ent->client->pers.battle_options[4].text)) 
+		if (!strlen(ent->client->pers.battle_options[4].text) && ent->client->pers.pokemon_page < 0) 
 		{
 			Com_sprintf(buffer, sizeof(buffer),
 				"xv 76 yv 225 string2 \"%s%s\" "
